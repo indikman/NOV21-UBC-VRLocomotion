@@ -111,4 +111,19 @@ public class ThrowableObject : GrabbableObject
         }
     }
 
+    public override void OnTriggerStart()
+    {
+        base.OnTriggerStart();
+    }
+
+    public override void OnTriggerEnd()
+    {
+        base.OnTriggerEnd();
+    }
+
+    public override void OnTrigger()
+    {
+        base.OnTrigger();
+    }
+
 }

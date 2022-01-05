@@ -6,6 +6,7 @@ public class XRHand : MonoBehaviour
 {
     public Animator handAnim;
     public string gripButton;
+    public string triggerButton;
 
     private GrabbableObject hoveredObject;
     private GrabbableObject grabbedObject;
@@ -44,6 +45,30 @@ public class XRHand : MonoBehaviour
                 grabbedObject = null;
             }
             
+        }
+
+        if (Input.GetButtonDown(triggerButton))
+        {
+            if(grabbedObject != null)
+            {
+                grabbedObject.OnTriggerStart();
+            }
+        }
+
+        if (Input.GetButtonUp(triggerButton))
+        {
+            if (grabbedObject != null)
+            {
+                grabbedObject.OnTriggerEnd();
+            }
+        }
+
+        if (Input.GetButton(triggerButton))
+        {
+            if (grabbedObject != null)
+            {
+                grabbedObject.OnTrigger();
+            }
         }
 
     }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GrabbableObject : MonoBehaviour
 {
+    public bool offsetGrab;
+
     private MeshRenderer rend;
     public Color hoveredColor;
 
@@ -43,6 +45,14 @@ public class GrabbableObject : MonoBehaviour
     public virtual void OnGrabStart(XRHand hand)
     {
         transform.SetParent(hand.transform);
+
+        if (!offsetGrab)
+        {
+            transform.position = hand.transform.position;
+            transform.rotation = hand.transform.rotation;
+        }
+        
+
         GetComponent<Rigidbody>().useGravity = false;
         GetComponent<Rigidbody>().isKinematic = true;
     }
@@ -52,5 +62,20 @@ public class GrabbableObject : MonoBehaviour
         transform.SetParent(null);
         GetComponent<Rigidbody>().useGravity = true;
         GetComponent<Rigidbody>().isKinematic = false;
+    }
+
+    public virtual void OnTriggerStart()
+    {
+
+    }
+
+    public virtual void OnTriggerEnd()
+    {
+
+    }
+
+    public virtual void OnTrigger()
+    {
+
     }
 }
